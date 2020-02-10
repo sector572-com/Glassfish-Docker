@@ -4,11 +4,11 @@ This docker file will download a copy of Eclipse Foundation Glassfish 5.1.0 full
 
 ## Building the Image
 
-docker build -t z28ss572/glassfish5 .
+`docker build -t z28ss572/glassfish5 .`
 
 ## Running the Image
 
-docker run -p "4848:4848" -p "8080:8080" -d z28ss572/glassfish5
+`docker run -p "4848:4848" -p "8080:8080" -d z28ss572/glassfish5`
 
 ## Other Notes
 
