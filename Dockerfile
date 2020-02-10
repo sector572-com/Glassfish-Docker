@@ -39,11 +39,9 @@ RUN apt autoremove -y
 RUN apt-get clean
 
 COPY configure-glassfish.sh .
-COPY glassfish-runner.sh .
 COPY new_passwordfile.txt .
 COPY old_passwordfile.txt .
 RUN chown glassfish:glassfish configure-glassfish.sh
-RUN chown glassfish:glassfish glassfish-runner.sh
 RUN chown glassfish:glassfish new_passwordfile.txt
 RUN chown glassfish:glassfish old_passwordfile.txt
 
@@ -56,4 +54,4 @@ RUN rm /opt/glassfish/configure-glassfish.sh
 RUN rm /opt/glassfish/old_passwordfile.txt
 RUN rm /opt/glassfish/new_passwordfile.txt
 
-CMD [ "/opt/glassfish/glassfish-runner.sh" ]
+CMD [ "asadmin", "start-domain", "--verbose", "domain1" ]
