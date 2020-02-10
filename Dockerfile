@@ -48,7 +48,9 @@ RUN chown glassfish:glassfish old_passwordfile.txt
 USER glassfish
 
 # Configure glassfish
-ENV PATH /opt/glassfish/glassfish5/bin:$PATH
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
+ENV GLASSFISH_HOME /opt/glassfish/glassfish5
+ENV PATH $JAVA_HOME/bin:$GLASSFISH_HOME/bin:$PATH
 RUN /opt/glassfish/configure-glassfish.sh
 RUN rm /opt/glassfish/configure-glassfish.sh
 RUN rm /opt/glassfish/old_passwordfile.txt
