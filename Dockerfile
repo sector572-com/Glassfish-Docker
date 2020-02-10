@@ -54,4 +54,6 @@ RUN rm /opt/glassfish/configure-glassfish.sh
 RUN rm /opt/glassfish/old_passwordfile.txt
 RUN rm /opt/glassfish/new_passwordfile.txt
 
+EXPOSE 8080 4848
+
 CMD [ "asadmin", "start-domain", "--verbose", "domain1" ]
