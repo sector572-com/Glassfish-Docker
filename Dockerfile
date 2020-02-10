@@ -11,6 +11,7 @@ RUN useradd -ms /bin/bash -g glassfish glassfish
 
 # Install temporary utilities
 RUN apt-get -y install wget
+RUN apt-get -y install curl
 RUN apt-get -y install unzip
 
 # Specify working directory
@@ -21,22 +22,22 @@ RUN chown glassfish:glassfish /opt/glassfish
 USER glassfish
 
 RUN wget -O glassfish-5.1.0.zip http://eclipse.mirror.rafal.ca/glassfish/glassfish-5.1.0.zip
-COPY glassfish-5.1.0.zip.sha512 .
-RUN ls -l
+RUN curl -o glassfish-5.1.0.zip.sha512 'https://www.eclipse.org/downloads/sums.php?file=%2Fglassfish%2Fglassfish-5.1.0.zip&type=sha512'
 RUN sha512sum -c glassfish-5.1.0.zip.sha512
 RUN unzip glassfish-5.1.0.zip
 RUN rm glassfish-5.1.0.zip
+RUN rm glassfish-5.1.0.zip.sha512
 
 # Change to root user
 USER root
 
 # Remove temporary utilities
 RUN apt-get purge -y wget
+RUN apt-get purge -y curl
 RUN apt-get purge -y unzip
 RUN apt autoremove -y
 RUN apt-get clean
 
-RUN rm glassfish-5.1.0.zip.sha512
 COPY configure-glassfish.sh .
 COPY glassfish-runner.sh .
 COPY new_passwordfile.txt .
