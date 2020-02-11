@@ -8,7 +8,7 @@ RUN groupadd glassfish && useradd -ms /bin/bash -g glassfish glassfish
 
 # Specify working directory
 WORKDIR /opt/glassfish
-RUN chown glassfish:glassfish /opt/glassfish
+RUN mkdir /var/lib/glassfish && chown glassfish:glassfish /opt/glassfish /var/lib/glassfish
 
 # Change to glassfish user
 USER glassfish
@@ -21,8 +21,8 @@ USER root
 # Remove temporary utilities
 RUN apt-get purge -y wget curl unzip && apt autoremove -y && apt-get clean
 
-COPY configure-glassfish.sh new_passwordfile.txt old_passwordfile.txt ./
-RUN chown glassfish:glassfish configure-glassfish.sh new_passwordfile.txt old_passwordfile.txt
+COPY configure-glassfish.sh ./
+RUN chown glassfish:glassfish configure-glassfish.sh
 
 USER glassfish
 

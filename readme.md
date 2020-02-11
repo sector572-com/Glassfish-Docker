@@ -12,8 +12,13 @@ This docker file will download a copy of Eclipse Foundation Glassfish 5.1.0 full
 
 ## Other Notes
 
-If you would like to change the administrator password, please update the following files and rebuild the image.
+The admin password will be generated automatically at build time.
 
-1. new_passwordfile.txt
-2. old_passwordfile.txt
+The initial admin password is stored in the file:
+
+`/var/lib/glassfish/initialAdminPassword`
+
+You can quickly view it by issuing the command below.
+
+`docker exec -it <container id> cat /var/lib/glassfish/initialAdminPassword`
 
