@@ -1,10 +1,10 @@
-FROM ubuntu:18.04
+FROM alpine:latest
 
 USER root
-RUN apt-get update && apt-get -y upgrade && apt-get -y install openjdk-8-jdk wget curl unzip
+RUN apk update && apk --no-cache upgrade && apk --no-cache add openjdk8 wget curl unzip bash
 
 # Create glassfish user/group
-RUN groupadd glassfish && useradd -ms /bin/bash -g glassfish glassfish
+RUN addgroup glassfish && adduser -s /bin/bash -G glassfish -h /home/glassfish -D glassfish
 
 # Specify working directory
 WORKDIR /opt/glassfish
@@ -19,7 +19,7 @@ RUN wget -O glassfish-5.1.0.zip http://eclipse.mirror.rafal.ca/glassfish/glassfi
 USER root
 
 # Remove temporary utilities
-RUN apt-get purge -y wget curl unzip && apt autoremove -y && apt-get clean
+RUN apk del wget curl unzip
 
 COPY configure-glassfish.sh ./
 RUN chown glassfish:glassfish configure-glassfish.sh
