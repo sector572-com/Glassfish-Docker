@@ -30,8 +30,7 @@ USER glassfish
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
 ENV GLASSFISH_HOME /opt/glassfish/glassfish5
 ENV PATH $JAVA_HOME/bin:$GLASSFISH_HOME/bin:$PATH
-RUN /opt/glassfish/configure-glassfish.sh && rm /opt/glassfish/configure-glassfish.sh /opt/glassfish/old_passwordfile.txt /opt/glassfish/new_passwordfile.txt
 
 EXPOSE 8080 4848
 
-CMD [ "asadmin", "start-domain", "--verbose", "domain1" ]
+ENTRYPOINT [ "./configure-glassfish.sh", "--", "asadmin", "start-domain", "--verbose", "domain1" ]
