@@ -33,4 +33,4 @@ ENV PATH $JAVA_HOME/bin:$GLASSFISH_HOME/bin:$PATH
 
 EXPOSE 8080 4848
 
-ENTRYPOINT [ "./configure-glassfish.sh", "--", "asadmin", "start-domain", "--verbose", "domain1" ]
+ENTRYPOINT [ "./configure-glassfish.sh", "asadmin", "start-domain", "--verbose", "domain1" ]
