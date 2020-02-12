@@ -12,13 +12,18 @@ This docker file will download a copy of Eclipse Foundation Glassfish 5.1.0 full
 
 ## Other Notes
 
-The admin password will be generated automatically at build time.
+### Automatic Password Generation
+The admin password will be generated automatically at runtime time.
 
 The initial admin password is stored in the file:
 
 `/var/lib/glassfish/initialAdminPassword`
 
-You can quickly view it by issuing the command below.
+You can quickly view the password by issuing the command below after the container has been started.
 
 `docker exec -it <container id> cat /var/lib/glassfish/initialAdminPassword`
+
+In addition, upon starting the container, you can watch for the password log message to appear by issuing the command below.
+
+`docker logs -f <container id>`
 
