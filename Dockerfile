@@ -31,6 +31,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64
 ENV GLASSFISH_HOME /opt/glassfish/glassfish5
 ENV PATH $JAVA_HOME/bin:$GLASSFISH_HOME/bin:$PATH
 
-EXPOSE 8080 4848
+EXPOSE 8080 4848 8181
 
 ENTRYPOINT [ "./configure-glassfish.sh", "asadmin", "start-domain", "--verbose", "domain1" ]
